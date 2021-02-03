@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 # My stuff is below
     'company.people',
-    'company.product'
+    'company.product',
+    'company.appointments',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
