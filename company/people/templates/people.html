@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1>People wow</h1>
+<ul>
+    {% for person in people %}
+        <li>{{people.name}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

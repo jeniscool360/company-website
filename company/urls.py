@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('generate-image/', generate_image, name="generate-image"),
     path('', TemplateView.as_view(template_name="index.html")),
+    path('people/', views.view_people, name="people"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
