@@ -19,8 +19,10 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from company.people.views import generate_image
+from .product import views
 
 urlpatterns = [
+    path('products', views.view_products, name="products"),
     path('admin/', admin.site.urls),
     path('generate-image/', generate_image, name="generate-image"),
     path('', TemplateView.as_view(template_name="index.html")),
