@@ -20,9 +20,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from company.people.views import generate_image
 from .product import views
+from .appointments import views as appt_views
 
 urlpatterns = [
     path('products', views.view_products, name="products"),
+    path('appointments', appt_views.AppointmentsView.as_view(), name="appointments"),
     path('admin/', admin.site.urls),
     path('generate-image/', generate_image, name="generate-image"),
     path('', TemplateView.as_view(template_name="index.html")),
