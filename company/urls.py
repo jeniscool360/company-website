@@ -18,7 +18,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
-from company.people.views import generate_image
+from company.people.views import generate_image, view_people, get_employee_image
 from .product import views
 from .appointments import views as appt_views
 
@@ -28,5 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('generate-image/', generate_image, name="generate-image"),
     path('', TemplateView.as_view(template_name="index.html")),
-    path('people/', views.view_people, name="people"),
+    path('people/', view_people, name="people"),
+    path('employee', get_employee_image)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

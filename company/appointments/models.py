@@ -11,3 +11,9 @@ class Appointments(models.Model):
         on_delete=models.CASCADE
     )
 
+    def __str__(self):
+        return f"""
+        Appointment confirmed for \
+        {self.date.strftime('%B %d, %Y, %I:%M %p')} \
+        with {self.employee.__str__()}
+        """

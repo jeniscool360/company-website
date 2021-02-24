@@ -8,10 +8,12 @@
     <title>
         {% block title %}TeleDino{% endblock %}
     </title>
+    {% block head %}{% endblock %}
 </head>
 <body>
     <header>
         <nav>
+            <a href="{% url 'appointments' %}">Set Up An Appointment</a>
             <a href="{% url 'people' %}">People</a>
             <a href="{% url 'products' %}">Products</a>
         </nav>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block head %}
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<!-- XDSoft DateTimePicker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block main %}
+<h1>Set an Appointment</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.date}}
+    {{form.employee}}
+    <input type="submit">
+</form>
+<img src="" id="selected-employee" width="200">
+<script>
+  $(function () {
+    $("#id_date").datetimepicker({
+      format: 'd/m/Y H:i',
+    });
+  });
+
+  // Extra
+  $("#id_employee").on("change", (e) => {
+    // The index of the employee 
+    const id = e.target.value
+    fetch(`/employee?id=${id}`, {method: 'GET'})
+      .then(res => res.json())
+      .then(json => {
+        console.log(json)
+        if (json) {
+          console.log(json.employee)
+          $("#selected-employee").attr("src", json.employee)
+        }
+      })
+  })
+</script>
+
+{% if submitted %}
+<p>Submitted! {{submitted}}</p>
+{% endif %}
+<p></p>
+
+{% if errors %}
+<p>Error:</p>
+<ul>
+    {% for e in errors %}
+        <li>{{e}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}
